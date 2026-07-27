@@ -1,0 +1,544 @@
+<DOCTYPE html>
+
+ <html>
+
+<HEAD>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>My Photography Portfolio </title>
+ 
+ <style>
+
+html {
+     scroll-behavior: smooth;
+}
+
+      body{
+          background-color:black;
+          color: white;
+          text-align: center;
+          font-family: Arial, sans-serif;
+      }
+
+      nav {
+          padding: 20px;
+          margin-bottom: 15px; 
+      }
+
+      nav a {
+          color: white;
+          text-decoration: none;
+          margin: 0 25px;
+          font-size: 14px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          transition: 0.3s;
+      }
+      nav a:hover{
+          color: orange;
+      }
+      img{
+          transition: transform 0.3s ease;
+      }
+      img:hover{
+          transform: scale(1.05);
+      }
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.gallery img {
+     width: 400px;
+     height: 300px;
+     object-fit: cover;
+}
+h1 {
+     font-size: 38px;
+     letter-spacing: 8px;
+     font-weight: 300;
+     margin-bottom: 10px;
+}
+p {
+     color: #aaaaaa;
+     letter-spacing: 2px;
+     margin-bottom: 35px;
+}
+#about {
+     padding: 100px 20px;
+     text-align: center;
+     min-height: 400px;
+}
+#photoViewer {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0,0,0,0.95);
+     z-index: 1000;
+     justify-content: center;
+     align-items: center;
+}
+#photoViewer img {
+     max-width: 90%;
+     max-height: 90%;
+     object-fit: contain;
+}
+#photoViewer {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0,0,0,0.95);
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+     cursor: pointer;
+
+}
+
+#largePhoto{
+     max-width: 90%;
+     max-height: 90%;
+     width: auto;
+     height: auto;
+     object-fit: contain;
+     
+}
+.close {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+.filters {
+     margin: 25px 0 30px;
+     text-align: center;
+}
+.filters button {
+     background: transparent;
+     color: #aaaaaa;
+     border: 10px 18px;
+     margin: 0 5px;
+     font-size: 13px;
+     letter-spacing: 2px;
+     cursor: pointer;
+     transition: 0.3s ease;
+}
+.filters button:hover {
+     color: orange;
+     transform: translateY(-2px);
+}
+.contact-link {
+     display: inline-block;
+     color: white;
+     text-decoration: none;
+     border: 1px solid #777;
+     padding: 12px 25px;
+     margin: 10px;
+     letter-spacing: 2px;
+     transition: 0.3s ease;
+}
+.contact-link:hover{
+     color: orange ;
+     border-color: orange;
+     transform: translateY(-3px);
+}
+@media (max-width: 700px) {
+
+     .filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 4px;
+    padding: 0 5px;
+}
+
+.filters button {
+    margin: 0;
+    padding: 5px 7px;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+    .gallery {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+        gap: 12px;
+    }
+
+    .gallery img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 22px;
+        letter-spacing: 3px;
+        padding: 0 10px;
+        word-wrap: break-word;
+     
+    }
+
+    nav a {
+        margin: 0 6px;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    nav {
+    padding: 15px 5px;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background-color: black;
+    
+}
+nav {
+    padding: 20px;
+    margin-bottom: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background-color: black;
+    border-bottom: 1px solid #222;
+}
+#about {
+     padding: 60px 20px;
+     min-height: auto;
+
+}
+#about h2 {
+     font-size: 22px;
+}
+#about p {
+     font-size: 15px;
+     line-height: 1.8;
+     letter-spacing: 1px;
+     max-width: 100%;
+}
+#contact {
+     padding: 50px 20px;
+}
+#contact h2 {
+     font-size: 20px;
+}
+#contact p {
+     font-size: 13px;
+     line-height:1.7;
+     letter-spacing: 1px;
+     margin-bottom: 25px;
+}
+.contact-link {
+    display: inline-block;
+    padding: 10px 16px;
+    margin: 5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+footer {
+     padding: 25px 15px;
+}
+footer p {
+     font-size: 10px;
+     letter-spacing: 1px;
+     line-height: 1.6;
+     margin: 0;
+}
+}
+.gallery img {
+     animation: fadeIn 0.4s ease;
+
+}
+@keyframes fadeIn {
+     from{
+          opacity: 0;
+          transform: translateY(20);
+
+     }
+     to {
+          opacity: 1;
+          transform: translateY(0);
+     }
+}
+.prev,
+.next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+    z-index: 10001;
+    padding: 15px;
+    user-select: none;
+}
+
+.prev {
+    left: 25px;
+}
+
+.next {
+    right: 25px;
+}
+
+.prev:hover,
+.next:hover {
+    color: orange;
+} 
+.filters button.active {
+    color: orange;
+    border-bottom: 1px solid orange;
+}
+.gallery img {
+    transition: transform 0.2s ease;
+}
+.gallery img.hidden-photo {
+    display: none;
+}
+#loadMore {
+    background: transparent;
+    color: white;
+    border: 1px solid #777;
+    padding: 12px 25px;
+    margin: 30px auto;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+}
+#loadMore:hover {
+    color: orange;
+    border-color: orange;
+}
+ </style>
+ </head>
+
+ <body id="home">
+     <nav>
+     <a href="#home">Home</a>
+     <a href="#portfolio">Portfolio</a>
+     <a href="#about">About</a>
+     <a href="#contact">contact</a>
+</nav>
+
+      <h1>ZEOOO PHOTOGRAPHY</h1>
+      <p>Capturing moments. Creating stories.</p>
+<section id="portfolio-title">
+     <h2>PORTFOLIO</h2>
+     <p>Selected Works</p>
+</section>
+
+
+<div class="filters">
+     <button class="active" onclick="filterPhotos('all', this)">ALL</button>
+     <button onclick="filterPhotos('wedding', this)">WEDDING</button>
+     <button onclick="filterPhotos('portraits', this)">PORTRAITS</button>
+     <button onclick="filterPhotos('creative', this)">CREATIVE</button> 
+
+</div>
+
+
+      <div class="gallery"id="portfolio">
+ <img src="images/photo1.JPG" alt="photo 1" data-category="wedding" loading="lazy">
+
+<img src="images/photo2.JPG" alt="photo 2" data-category="wedding" loading="lazy">
+
+<img src="images/photo3.JPG" alt="photo 3" data-category="creative" loading="lazy">
+
+<img src="images/photo4.JPG" alt="photo 4" data-category="portraits" loading="lazy">
+
+<img src="images/wedding1.JPG" alt="Wedding 1" data-category="wedding" loading="lazy">
+<img src="images/wedding2.JPG" alt="Wedding 2" data-category="wedding" loading="lazy">
+<img src="images/wedding3.JPG" alt="Wedding 3" data-category="wedding" loading="lazy">
+<img src="images/wedding4.JPG" alt="Wedding 4" data-category="wedding" loading="lazy">
+<img src="images/wedding5.JPG" alt="Wedding 5" data-category="wedding" loading="lazy">
+<img src="images/wedding6.JPG" alt="Wedding 6" data-category="wedding" loading="lazy">
+<img src="images/wedding7.JPG" alt="Wedding 7" data-category="wedding" loading="lazy">
+<img src="images/wedding8.JPG" alt="Wedding 8" data-category="wedding" loading="lazy">
+<img src="images/wedding9.JPG" alt="Wedding 9" data-category="wedding" loading="lazy">
+<img src="images/wedding10.JPG" alt="Wedding 10" data-category="wedding" loading="lazy">
+<img src="images/wedding11.JPG" alt="Wedding 11" data-category="wedding" loading="lazy">
+<img src="images/wedding12.JPG" alt="Wedding 12" data-category="wedding" loading="lazy">
+<img src="images/wedding13.JPG" alt="Wedding 13" data-category="wedding" loading="lazy"
+<img src="images/wedding14.JPG" alt="Wedding 14" data-category="wedding" loading="lazy">
+<img src="images/wedding15.JPG" alt="Wedding 15" data-category="wedding" loading="lazy">
+      </div> 
+      <button id="loadMore">LOAD MORE</button>
+
+<section id="about">
+     <h2>ABOUT ME</h2>
+
+     <p>
+         I'm Santhosh, the photographer behind ZEOOO Photography.
+         I specialize in weddings, portraits and creative photography,
+         capturing genuine emotions and turning moments into lasting stories.
+     </p>
+</section>
+<section id="contact">
+
+     <h2>LET'S WORK TOGETHER</h2>
+
+     <p>
+          Have a project, wedding or photoshoot in mind?
+          Let's create something memorable together.
+     </p>
+     <a class="contact-link" href="https://instagram.com/santhosh__9_9_9" 
+     target="_blank">
+      instagram
+</a>
+
+
+<a class="contact-link" href="mailto:santhoshsurineedi@gmail.com">
+     Email me 
+</a>
+
+</section>
+<footer>
+     <p>© 2026 ZEOOO PHOTOGRAPHY. All Rights Reserved.</p>
+</footer>
+
+<div id="photoViewer">
+    <span class="close">&times;</span>
+
+    <span class="prev">&#10094;</span>
+
+    <img id="largePhoto">
+
+    <span class="next">&#10095;</span>
+</div>
+
+<script>
+    const photos = document.querySelectorAll('.gallery img');
+    const viewer = document.getElementById('photoViewer');
+    const largePhoto = document.getElementById('largePhoto');
+
+    photos.forEach(function(photo) {
+        photo.style.cursor = 'pointer';
+
+        photo.addEventListener('click', function() {
+            largePhoto.src = photo.src;
+            viewer.style.display = 'flex';
+        });
+    });
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+
+        const category = button.getAttribute('data-filter');
+
+        photos.forEach(function(photo) {
+
+            if (category === 'all' || photo.getAttribute('data-category') === category) {
+                photo.style.display = 'block';
+            } else {
+                photo.style.display = 'none';
+            }
+
+        });
+
+    });
+});
+
+     
+    
+    function filterPhotos(category, clickedButton) {
+
+    document.querySelectorAll('.filters button').forEach(function(button) {
+        button.classList.remove('active');
+    });
+
+    clickedButton.classList.add('active');
+
+    const photos = document.querySelectorAll('.gallery img');
+
+    photos.forEach(function(photo) {
+        if (category === 'all' || photo.dataset.category === category) {
+            photo.style.display = 'block';
+        } else {
+            photo.style.display = 'none';
+        }
+    });
+}
+
+let currentPhotoIndex = 0;
+
+function getVisiblePhotos() {
+    return Array.from(document.querySelectorAll('.gallery img'))
+        .filter(photo => photo.style.display !== 'none');
+}
+
+photos.forEach(function(photo) {
+    photo.addEventListener('click', function() {
+        const visiblePhotos = getVisiblePhotos();
+        currentPhotoIndex = visiblePhotos.indexOf(photo);
+    });
+});
+
+document.querySelector('.next').addEventListener('click', function(event) {
+    event.stopPropagation();
+
+    const visiblePhotos = getVisiblePhotos();
+
+    currentPhotoIndex = (currentPhotoIndex + 1) % visiblePhotos.length;
+
+    largePhoto.src = visiblePhotos[currentPhotoIndex].src;
+});
+
+document.querySelector('.prev').addEventListener('click', function(event) {
+    event.stopPropagation();
+
+    const visiblePhotos = getVisiblePhotos();
+
+    currentPhotoIndex =
+        (currentPhotoIndex - 1 + visiblePhotos.length) % visiblePhotos.length;
+
+    largePhoto.src = visiblePhotos[currentPhotoIndex].src;
+});
+const closeButton = document.querySelector('.close');
+
+closeButton.addEventListener('click', function(event) {
+    event.stopPropagation();
+    viewer.style.display = 'none';
+});
+document.addEventListener('keydown',function(event) {
+
+     if (viewer.style.display !== 'flex') return;
+
+     const visiblePhotos = getVisiblePhotos();
+
+     if(event.key === 'ArrowRight') {
+          currentPhotoIndex = 
+          (currentPhotoIndex + 1) % visiblePhotos.length;
+
+       largePhoto.src = visiblePhotos[currentPhotoIndex].src;
+     }
+     
+     if (event.key === 'Escape') {
+        viewer.style.display = 'none';
+     }
+});
+viewer.addEventListener('click', function(event) {
+    if (event.target === viewer) {
+        viewer.style.display = 'none';
+    }
+});
+</script>
+
+ </body>
+
+</html>
